@@ -25,7 +25,7 @@ public class User extends DateTime {
     @Column(nullable = true)
     private Date loginAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "adminId",nullable = true)
     private Admin admin;
 
