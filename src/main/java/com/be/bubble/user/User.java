@@ -1,16 +1,24 @@
 package com.be.bubble.user;
 
 import com.be.bubble.admin.Admin;
-import com.be.bubble.common.DateTime;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Date;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends DateTime {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +34,17 @@ public class User extends DateTime {
     private Date loginAt;
 
     @ManyToOne
-    @JoinColumn(name = "adminId",nullable = true)
+    @JoinColumn(name = "adminId", nullable = true)
+    @JsonIgnore
     private Admin admin;
+
+    @CreatedDate
+    @Column
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column
+    private LocalDateTime updatedAt;
 
     @Builder
     public User(String email, String password, Date loginAt, Admin admin) {

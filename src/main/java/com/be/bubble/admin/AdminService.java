@@ -6,6 +6,7 @@ import com.be.bubble.user.User;
 import com.be.bubble.user.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,12 @@ import java.util.Optional;
 public class AdminService {
 
     private final AdminRepository adminRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Transactional
     public Admin signUpAdmin(SignUpAdminRequestDTO signUpRequestDto) {
         Admin admin = Admin.builder()
                 .email(signUpRequestDto.getEmail())
-                .password(signUpRequestDto.getPassword())
+                .password(bCryptPasswordEncoder.encode(signUpRequestDto.getPassword()))
                 .build();
         adminRepository.save(admin);
         return admin;

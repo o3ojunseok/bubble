@@ -1,19 +1,24 @@
 package com.be.bubble.admin;
 
-import com.be.bubble.common.DateTime;
 import com.be.bubble.user.User;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Admin extends DateTime {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +34,16 @@ public class Admin extends DateTime {
     private Date loginAt;
 
     @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<User> user = new ArrayList<>();
+
+    @CreatedDate
+    @Column
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column
+    private LocalDateTime updatedAt;
 
     @Builder
     public Admin(String email, String password, Date loginAt, List<User> user) {

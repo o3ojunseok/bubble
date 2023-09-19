@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("admin")
+@RequestMapping("/admin")
 public class AdminController {
 
     private final AdminService adminService;
 
-    @PostMapping("/admin/signup")
+    @PostMapping("/signup")
     public ResponseEntity<Admin> signUpUser(@RequestBody SignUpAdminRequestDTO signUpUserRequestDTO) {
         Admin admin = adminService.signUpAdmin(signUpUserRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(admin);
