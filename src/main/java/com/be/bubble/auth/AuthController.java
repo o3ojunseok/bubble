@@ -1,6 +1,5 @@
 package com.be.bubble.auth;
 
-import com.be.bubble.admin.AdminService;
 import com.be.bubble.user.User;
 import com.be.bubble.user.UserService;
 import com.be.bubble.user.dto.LoginUserRequestDto;
@@ -18,7 +17,6 @@ import java.util.Optional;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AdminService adminService;
     private final UserService userService;
 
     @PostMapping("/login")
