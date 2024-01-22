@@ -1,14 +1,10 @@
 package com.be.bubble.user.dto;
 
-import com.be.bubble.admin.Admin;
 import com.be.bubble.user.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 public class UserResponseDTO {
@@ -16,7 +12,6 @@ public class UserResponseDTO {
     private final String email;
     private final String password;
     private final Date loginAt;
-    private final Admin admin;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 
@@ -24,7 +19,6 @@ public class UserResponseDTO {
         this.id = user.getId();
         this.email = user.getEmail();
         this.password = user.getPassword();
-        this.admin = user.getAdmin();
         this.createdAt = user.getCreatedAt();
         this.updatedAt = user.getUpdatedAt();
         this.loginAt = user.getLoginAt();
