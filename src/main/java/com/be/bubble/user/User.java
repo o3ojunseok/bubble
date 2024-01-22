@@ -1,9 +1,5 @@
 package com.be.bubble.user;
 
-<<<<<<< HEAD
-import com.be.bubble.admin.Admin;
-=======
->>>>>>> 8cfc58a4b1c23dfe99bb14ec8652ec7b7ed7fc2d
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -33,13 +29,6 @@ public class User {
     @Column(nullable = true)
     private Date loginAt;
 
-<<<<<<< HEAD
-    @ManyToOne
-    @JoinColumn(name = "adminId")
-    private Admin admin;
-
-=======
->>>>>>> 8cfc58a4b1c23dfe99bb14ec8652ec7b7ed7fc2d
     @CreatedDate
     @Column
     private LocalDateTime createdAt;
