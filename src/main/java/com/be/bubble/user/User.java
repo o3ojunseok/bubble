@@ -1,18 +1,15 @@
 package com.be.bubble.user;
 
 import com.be.bubble.admin.Admin;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Date;
 
 @Getter
@@ -34,8 +31,7 @@ public class User {
     private Date loginAt;
 
     @ManyToOne
-    @JoinColumn(name = "adminId", nullable = true)
-    @JsonIgnore
+    @JoinColumn(name = "adminId")
     private Admin admin;
 
     @CreatedDate
